@@ -6,19 +6,21 @@ import Authenticate from "../pages/auth/Authenticate";
 import SignupPage from "../pages/auth/SignUp";
 import VerifyOtpPage from "../pages/auth/VerifyOtpPage";
 import SetPasswordPage from "../pages/auth/SetPasswordPage";
-import ProtectedRoute from "./ProtectedRoute";
 import Unauthorized from "../pages/auth/Unauthorized";
 import Overview from "../pages/Common/Overview";
 
-// ⚠️ nhớ import nếu đã có
-// import UserPage from "../pages/...";
-// import EmployerPage from "../pages/...";
-// import AdminPage from "../pages/...";
+import ProtectedRoute from "./ProtectedRoute";
+import MainLayout from "../layouts/MainLayout";
+
+
+// Demo page (bạn thay bằng page thật)
+import Dashboard from "../pages/student/Dashboard";
+
 
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* ================= PUBLIC ================= */}
+      {/* ================= PUBLIC (KHÔNG CÓ LAYOUT) ================= */}
       <Route path="/" element={<Overview />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
@@ -27,19 +29,34 @@ const AppRoutes = () => {
       <Route path="/set-password" element={<SetPasswordPage />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
 
-      {/* ================= PROTECTED ================= */}
+      {/* ================= PROTECTED + LAYOUT ================= */}
       <Route element={<ProtectedRoute />}>
-        {/* Test trước 1 route cho chắc */}
-        {/* <Route path="/home" element={<UserPage />} /> */}
+        
+        {/* Bọc Layout ở đây */}
+        <Route element={<MainLayout />}>
+          
+          {/* User chung */}
+          <Route path="/dashboard" element={<Dashboard />} />
+
+        </Route>
       </Route>
 
-      {/* ================= ROLE-BASED ================= */}
+      {/* ================= ROLE EMPLOYER / ADMIN ================= */}
       <Route element={<ProtectedRoute allowedRoles={["ROLE_EMPLOYER", "ROLE_ADMIN"]} />}>
-        {/* <Route path="/employer" element={<EmployerPage />} /> */}
+        <Route element={<MainLayout />}>
+          
+          {/* <Route path="/employer" element={<EmployerPage />} /> */}
+
+        </Route>
       </Route>
 
+      {/* ================= ROLE ADMIN ================= */}
       <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN"]} />}>
-        {/* <Route path="/admin" element={<AdminPage />} /> */}
+        <Route element={<MainLayout />}>
+          
+          {/* <Route path="/admin" element={<AdminPage />} /> */}
+
+        </Route>
       </Route>
 
       {/* ================= FALLBACK ================= */}
