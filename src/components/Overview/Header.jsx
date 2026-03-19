@@ -1,48 +1,50 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import GuideModal from "./GuideModal";
+import { Bell, Settings } from "lucide-react";
 import logoImg from "../../assets/logo.jpg";
 
 export default function Header() {
-    const navigate = useNavigate();
-    const [showGuide, setShowGuide] = React.useState(false);
-
     return (
-        <>
-            <GuideModal isOpen={showGuide} onClose={() => setShowGuide(false)} />
-            <header className="sticky top-0 z-50 flex items-center justify-between px-8 py-3 bg-white shadow-sm border-b border-gray-200">
-                {/* Logo */}
-                <div className="flex items-center space-x-2">
-                    <img
-                        src={logoImg}
-                        alt="JobMate"
-                        className="w-10 h-10 rounded-lg object-cover"
-                    />
-                    <h1 className="text-xl font-bold">JobMate</h1>
+        <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-white border-b shadow-sm">
+            
+            {/* Left: Logo + Title */}
+            <div className="flex items-center gap-3">
+                    <div className="w-10  h-10 t-10 text-5xl rounded-xl flex items-center justify-center text-white">
+                        🎓
+                    </div>
+                <h1 className="text-lg font-semibold text-gray-800">
+                    MentorAI Grad
+                </h1>
+            </div>
+
+            {/* Center: Search */}
+            <div className="flex-1 mx-10 mr-[50%]">
+                <input
+                    type="text"
+                    placeholder="Search milestones, documents, feedback..."
+                    className="w-full px-4 py-2 bg-gray-100 rounded-full outline-none focus:ring-2 focus:ring-blue-400"
+                />
+            </div>
+
+            {/* Right: Icons + Avatar */}
+            <div className="flex items-center gap-5">
+                
+                {/* Notification */}
+                <div className="relative cursor-pointer">
+                    <Bell className="w-5 h-5 text-gray-600" />
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                 </div>
 
-                {/* Menu */}
-                <nav className="flex items-center space-x-6 font-medium text-gray-800">
-                    <button onClick={() => navigate("/login")} className="hover:text-gray-600">
-                        Tìm việc
-                    </button>
-                    <button onClick={() => navigate("/login")} className="hover:text-gray-600">
-                        Đăng tin
-                    </button>
-                    <button onClick={() => setShowGuide(true)} className="hover:text-gray-600">
-                        Hướng dẫn
-                    </button>
-                    <button onClick={() => navigate("/login")} className="hover:text-gray-600">
-                        Đăng nhập
-                    </button>
-                    <button
-                        onClick={() => navigate("/login")}
-                        className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
-                    >
-                        Đăng ký
-                    </button>
-                </nav>
-            </header>
-        </>
+                {/* Settings */}
+                <Settings className="w-5 h-5 text-gray-600 cursor-pointer" />
+
+                {/* Divider */}
+                <div className="h-6 w-px bg-gray-300"></div>
+
+                {/* Avatar */}
+                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-100 text-blue-600 font-semibold cursor-pointer">
+                    DS
+                </div>
+            </div>
+        </header>
     );
 }
