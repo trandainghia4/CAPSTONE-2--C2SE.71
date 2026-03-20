@@ -15,7 +15,7 @@ import MainLayout from "../layouts/MainLayout";
 
 // Demo page (bạn thay bằng page thật)
 import Dashboard from "../pages/student/Dashboard";
-
+import RegisterProject from "../components/Overview/RegisterProject"
 
 const AppRoutes = () => {
   return (
@@ -37,6 +37,7 @@ const AppRoutes = () => {
           
           {/* User chung */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/newproject" element={<RegisterProject />} />
 
         </Route>
       </Route>
