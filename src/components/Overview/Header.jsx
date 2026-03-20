@@ -1,11 +1,10 @@
 import React from "react";
 import { Bell, Settings } from "lucide-react";
-import logoImg from "../../assets/logo.jpg";
 
 export default function Header() {
     return (
         <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-white border-b shadow-sm">
-            
+
             {/* Left: Logo + Title */}
             <div className="flex items-center gap-3">
                     <div className="w-10  h-10 t-10 text-5xl rounded-xl flex items-center justify-center text-white">
@@ -27,7 +26,6 @@ export default function Header() {
 
             {/* Right: Icons + Avatar */}
             <div className="flex items-center gap-5">
-                
                 {/* Notification */}
                 <div className="relative cursor-pointer">
                     <Bell className="w-5 h-5 text-gray-600" />
