@@ -12,10 +12,10 @@ import Overview from "../pages/Common/Overview";
 import ProtectedRoute from "./ProtectedRoute";
 import MainLayout from "../layouts/MainLayout";
 
-
 // Demo page (bạn thay bằng page thật)
 import Dashboard from "../pages/student/Dashboard";
-import RegisterProject from "../components/Overview/RegisterProject"
+import RegisterProject from "../components/Overview/RegisterProject";
+import Team from "../pages/admin/Team";
 
 const AppRoutes = () => {
   return (
@@ -31,32 +31,30 @@ const AppRoutes = () => {
 
       {/* ================= PROTECTED + LAYOUT ================= */}
       <Route element={<ProtectedRoute />}>
-        
         {/* Bọc Layout ở đây */}
         <Route element={<MainLayout />}>
-          
           {/* User chung */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/newproject" element={<RegisterProject />} />
-
+          <Route path="/team" element={<Team />} />
         </Route>
       </Route>
 
       {/* ================= ROLE EMPLOYER / ADMIN ================= */}
-      <Route element={<ProtectedRoute allowedRoles={["ROLE_EMPLOYER", "ROLE_ADMIN"]} />}>
+      <Route
+        element={
+          <ProtectedRoute allowedRoles={["ROLE_EMPLOYER", "ROLE_ADMIN"]} />
+        }
+      >
         <Route element={<MainLayout />}>
-          
           {/* <Route path="/employer" element={<EmployerPage />} /> */}
-
         </Route>
       </Route>
 
       {/* ================= ROLE ADMIN ================= */}
       <Route element={<ProtectedRoute allowedRoles={["ROLE_ADMIN"]} />}>
         <Route element={<MainLayout />}>
-          
           {/* <Route path="/admin" element={<AdminPage />} /> */}
-
         </Route>
       </Route>
 
